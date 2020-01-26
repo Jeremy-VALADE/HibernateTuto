@@ -31,14 +31,6 @@ public class TestService {
         session.close();
     }
 
-    public Personne getAllEvenemenst() {
-        Session session = this.sessionFactory.openSession();
-        Personne evenements = (Personne) session.load(Personne.class, 1);
-        session.close();
-        return evenements;
-    }
-    
-    
     public  List<Personne> getAllEvenement() {
         Session session = this.sessionFactory.openSession();
         List<Personne> evenements = session.createQuery("from Personne").list();

@@ -7,6 +7,8 @@ package modele;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 import javax.crypto.AEADBadTagException;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.MetadataSources;
@@ -28,13 +30,14 @@ public class Main {
         Maison u = new Maison("lance");
         t.insertEvenement(l);
         t.insertEvenement(u);
-        ArrayList<Maison> maisons = new ArrayList<>();
+        HashSet<Maison> maisons = new HashSet<>();
         maisons.add(l);
         maisons.add(u);
-        t.insertEvenement(new Personne(l));
-        maisons = new ArrayList<>();       
+        t.insertEvenement(new Personne(maisons));
+        //maisons = new ArrayList<>();       
         maisons.add(new Maison("oui"));
-       t.insertEvenement(new Personne(l));
+       t.insertEvenement(new Personne(maisons));
+       // System.out.println(t.getAllEvenement().get(0).maison);
         for (Personne p : t.getAllEvenement())
             System.out.println(p);
     }

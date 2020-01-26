@@ -7,6 +7,7 @@ package modele;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -24,19 +25,21 @@ public class Personne {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int num;
-    /*
-    @OneToMany(
-            cascade = CascadeType.ALL,
-            orphanRemoval = true             
+    
+    @ManyToMany(
+            cascade = CascadeType.ALL,            
+            fetch = FetchType.EAGER
     )
-    List<Maison> maison = new ArrayList<Maison>();
-    */
-    @OneToOne
-    Maison maison;
+    Set<Maison> maison;
+            
+    
+   /* @OneToOne
+    Maison maison;*/
     public Personne() {
+        
     }
 
-    public Personne(Maison maison) {
+    public Personne(Set<Maison> maison) {
         this.maison = maison;
     }
 
